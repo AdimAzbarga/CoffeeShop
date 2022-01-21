@@ -1,0 +1,174 @@
+﻿@model Coffe.Models.Order
+@using Coffe.Models
+@using Coffe.Dal
+@{ 
+    ViewBag.Title = "EditClient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    OrderDal db = new OrderDal();
+    List<Order> orders = db.Orders.ToList(); 
+
+}
+
+<h2>EditClient</h2>
+<head>
+    <style>
+        .square {
+            position: relative;
+            top: 18px;
+            height: 50px;
+            width: 50px;
+            background-color: #555;
+            margin: 20px 0 0 0;
+            display: inline-block;
+        }
+
+        .table {
+            margin: 30px;
+            display: inline;
+            padding: 25px;
+        }
+        .door {
+            border-bottom: 4px solid black;
+            border-left: 4px solid black;
+            border-right: 4px solid black;
+            padding-bottom: 50px;
+            border-radius: 16px;
+        }
+        span{
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+@using (Html.BeginForm("CreateForClient", "Orders", FormMethod.Post))
+{
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Order</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    @Html.HiddenFor(model => model.Itemid)
+
+                    @Html.HiddenFor(model => model.Userid)
+                    <h3>Choose chair 0 if you want a takeaway!</h3>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Chair, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Chair, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Chair, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <h3 style="color:red; margin-left:30px;">@ViewBag.m</h3>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+ }
+<div class="door">
+@for (int i = 1; i <= 8; i++)
+{
+    int count = 0;
+    foreach(Order o in orders)
+    {
+        if(o.Chair == i)
+        {
+            count++;
+        }
+    }
+<div class="table">
+    @if (count == 0)
+    {
+        <span style="color:forestgreen">| @i |</span>
+    }
+    else
+    { 
+        <span style="color:red">| @i |</span>
+    }
+    @{ 
+        i = i + 1;
+    }
+    <div class="square"></div>
+
+    @{ 
+        count = 0;
+        foreach (Order o in orders)
+        {
+            if (o.Chair == i)
+            {
+                count++;
+            }
+        }
+    }
+    @if (count == 0)
+    {
+        <span style="color:forestgreen">| @i |</span>
+    }
+    else
+    { 
+        <span style="color:red">| @i |</span>
+    }
+</div>
+}
+</div>
+@for (int i = 9; i <= 16; i++)
+{
+    int count = 0;
+    foreach(Order o in orders)
+    {
+        if(o.Chair == i)
+        {
+            count++;
+        }
+    }
+<div class="table">
+    @if (count == 0)
+    {
+        <span style="color:green">| @i |</span>
+    }
+    else
+    { 
+        <span style="color:red">| @i |</span>
+    }
+    @{ 
+        i = i + 1;
+    }
+    <div class="square"></div>
+
+    @{ 
+        count = 0;
+        foreach (Order o in orders)
+        {
+            if (o.Chair == i)
+            {
+                count++;
+            }
+        }
+    }
+    @if (count == 0)
+    {
+        <span style="color:green">| @i |</span>
+    }
+    else
+    { 
+        <span style="color:red">| @i |</span>
+    }
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

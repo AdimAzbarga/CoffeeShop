@@ -1,0 +1,83 @@
+﻿@model Coffe.Models.Items
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Items</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.images)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.images)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.availability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.availability)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sales)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isonSale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isonSale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.newPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.newPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

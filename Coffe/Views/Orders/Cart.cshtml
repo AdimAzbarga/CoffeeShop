@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Coffe.Models.Order>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int? ammount = 0;
+}
+
+<h2>Cart</h2>
+<head>
+    <style>
+        #paypal-button-container {
+            text-align: center;
+        }
+    </style>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+    <script>paypal.Buttons().render('#paypal-button-container');</script>
+</head>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Userid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Itemid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chair)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    ammount += item.Price;
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Userid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Itemid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Chair)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditOrder", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+<h2>Total Price : @ammount ₪</h2>
+<div id="paypal-button-container" ></div>
