@@ -8,61 +8,118 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
             width: 40%;
+            margin-left: 340px;
+            margin-top: 50px;
+            align-content: center;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0efe7;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .card:hover {
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         }
 
+        .heading {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #1e3932;
+            padding-inline: auto;
+            margin: 50px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
         .container {
             padding: 2px 16px;
         }
 
+        .center {
+            margin: auto auto 30px auto;
+            width: 65%;
+            border: 3px solid #f0efe7;
+            padding: 10px;
+        }
+
+        .price {
+            margin: auto auto auto 200px;
+        }
     </style>
+    @*<style>
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                width: 40%;
+            }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+            .container {
+                padding: 2px 16px;
+            }
+
+        </style>*@
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Break", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                <li>@Html.ActionLink("Items", "Index", "Items")</li>
-                <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
-
-            </ul>
-        </div>
-
-    </div>
-</div>
-    @foreach (var item in Model) { 
-        <div class="card">
-            <img src="@item.images.ToString()" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>@item.price</b></h4> 
-                <p>@item.ItemDescription</p> 
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Break", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "adminPage", "Home")</li>
+                    <li>@Html.ActionLink("Items", "Index", "Items")</li>
+                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                    <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+
+                </ul>
+            </div>
+
         </div>
-    }
+    </div>
+    <section class=" center">
+        <hr />
+        <hr />
+        <h1 class="heading text-center" style="color: #1e3932 ">Shop Items</h1>
+        @foreach (var item in Model)
+        {
+            <div class=" card-group">
+                <div class=" center card">
+                    <img src="@item.images.ToString()" alt="Avatar" class="card-img-top" style="width:100%">
+                    <div class="card-body ">
+                        <p class="card-text text-center">@item.ItemDescription</p>
+                        <h4><b class="price">@item.price</b><b> ₪</b></h4>
+                    </div>
+                    <a type="button" class="btn btn-outline-dark" href="@Url.Action("Index", "Items")"><i class="fas far fa-edit"></i> Go to Edit</a>
+
+                </div>
+            </div>
+        }
+    </section>
+
 
 </body>
 </html>

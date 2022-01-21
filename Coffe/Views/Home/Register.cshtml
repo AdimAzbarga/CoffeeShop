@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Register";
-    Layout =null;
+    Layout = null;
 }
 
 
@@ -27,8 +27,8 @@
     <title>Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     @*@RenderSection("scripts", required: false)*@
-    
-<style>
+
+    <style>
         .focus-input::before {
             background: #1e3932;
         }
@@ -52,12 +52,12 @@
         body {
             background-color: #e0f1d0;
         }
- </style>    
-    
+    </style>
+
 
 </head>
 <body>
-@using (Html.BeginForm("Create", "Home", FormMethod.Post))
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
@@ -95,16 +95,19 @@
                 </div>
 
                 <h6>@ViewBag.massage</h6>
-            
+
                 <input type="submit" value="Create" class="btn btn-default" />
-                  
-              
-                 </div>
+                <hr />
+                <h6>Already have an account?<a href="@Url.Action("Login", "Home")"> Login</a> </h6>
+                <hr />
+                <hr />
+
+            </div>
             <!--Image-->
             <div class="image">
                 <img src="../../images/signupfin.png" class="img" alt="" />
             </div>
-           
+
         </div>
     }
 </body>

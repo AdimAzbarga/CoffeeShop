@@ -113,12 +113,15 @@
                         }
                         else
                         {
+                             <li class="nav-item">
+                                <a class="nav-link" href=" @Url.Action("Logout", "Home") ">Logout</a>
+                            </li>
+                      
                             <li class="nav-item">
                                 <a class="nav-link" href="">Welcome @Session["name"]! </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href=" @Url.Action("Logout", "Home") ">Logout</a>
-                            </li>
+                            
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Cart", "Orders" , new { id = Session["id"] }) "><i class="fas fa-shopping-cart"></i></a>
                             </li>
@@ -203,7 +206,7 @@
                                     <h4><b>@item.newPrice</b></h4>
                                 }
                                 else { 
-                                <h4><b>@item.price</b></h4>
+                                    <h4><b>@item.price</b><b> ₪</b></h4>
                                 }
                                 @if (Session["name"] != null)
                                 {
@@ -211,7 +214,7 @@
                                 }
                                 else
                                 {
-                                    <a  href="@Url.Action("Login","Home")" class="btn btn-lg btn-block btn-outline-dark" type="button">Add to cart</a>
+                                    <a  href="@Url.Action("Login","Home")" class="btn btn-lg btn-block btn-outline-dark" type="button">Add to cart <i class="fas fa-cart-plus"></i></a>
                                 }
                                 </div>
                         </div>
