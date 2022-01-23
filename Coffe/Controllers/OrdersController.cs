@@ -180,8 +180,8 @@ namespace Coffe.Controllers
 
             Items item = idb.Items.Find(id);
             User user = udb.Users.Where(x => x.Username == username).FirstOrDefault();
-
-            Order order = new Order() { Itemid = item.Id, Price = item.price, Userid = user.Uid };
+            int p = (int)(item.isonSale==true ? item.newPrice : item.price);
+            Order order = new Order() { Itemid = item.Id, Price = p, Userid = user.Uid };
             return View("EditClient", order);
         }
         public ActionResult Cart(string id)
